@@ -1,45 +1,104 @@
-// Wait for the DOM to load fully
-document.addEventListener('DOMContentLoaded', function () {
+'use strict';
+
+// Nafez landing page script (resolved)
+// - Handles year stamp
+// - Subscribes via POST /subscribe
+// - Basic validation + user feedback
+// - Smooth scroll for in-page anchors
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Year stamp
   const yearSpan = document.getElementById('year');
   if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
+    yearSpan.textContent = String(new Date().getFullYear());
   }
 
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener('click', (e) => {
+      const targetId = a.getAttribute('href');
+      if (targetId && targetId.startsWith('#')) {
+        const el = document.querySelector(targetId);
+        if (el) {
+          e.preventDefault();
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }
+    });
+  });
+
+  // Subscribe form
   const form = document.getElementById('subscribe-form');
-  const messageElem = document.getElementById('message');
+  const msg = document.getElementById('message');
+
+  function setMessage(text, isError = false) {
+    if (!msg) return;
+    msg.textContent = text;
+    // Use inline color for errors vs default success color set in CSS
+    msg.style.color = isError ? '#ff6b6b' : '';
+  }
+
+  function isValidEmail(email) {
+    // Simple, permissive check; server validates again
+    return /.+@.+\..+/.test(email);
+  }
 
   if (form) {
-    form.addEventListener('submit', async function (e) {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      messageElem.textContent = '';
-      const email = document.getElementById('email').value.trim();
-      const name = document.getElementById('name').value.trim();
-      const agreeCheckbox = document.getElementById('agree');
-      if (!email) {
-        messageElem.textContent = 'Please enter a valid email address.';
+
+      const nameEl = /** @type {HTMLInputElement|null} */(document.getElementById('name'));
+      const emailEl = /** @type {HTMLInputElement|null} */(document.getElementById('email'));
+      const agreeEl = /** @type {HTMLInputElement|null} */(document.getElementById('agree'));
+      const submitBtn = /** @type {HTMLButtonElement|null} */(form.querySelector('button[type="submit"]'));
+
+      const name = (nameEl?.value || '').trim();
+      const email = (emailEl?.value || '').trim().toLowerCase();
+
+      if (agreeEl && !agreeEl.checked) {
+        setMessage('Please accept the Terms of Use and Privacy Policy.', true);
         return;
       }
-      // Ensure user agreed to Terms and Privacy
-      if (agreeCheckbox && !agreeCheckbox.checked) {
-        messageElem.textContent = 'Please agree to the Terms and Privacy Policy to continue.';
+      if (!email || !isValidEmail(email)) {
+        setMessage('Please enter a valid email address.', true);
+        emailEl?.focus();
         return;
       }
+
+      // Submit
+      const originalBtnText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Please wait…';
+      }
+      setMessage('');
+
       try {
-        const response = await fetch('/subscribe', {
+        const res = await fetch('/subscribe', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email, name }),
+          body: JSON.stringify({ email, name })
         });
-        const data = await response.json();
-        if (response.ok) {
-          messageElem.textContent = 'Thank you! We’ll notify you when we launch.';
-          form.reset();
+
+        if (res.ok) {
+          setMessage('Thanks! You\'re on the list.');
+          if (nameEl) nameEl.value = '';
+          if (emailEl) emailEl.value = '';
+          if (agreeEl) agreeEl.checked = false;
+        } else if (res.status === 409) {
+          setMessage('You\'re already subscribed with that email.', true);
+        } else if (res.status === 400) {
+          setMessage('That email looks invalid. Please try again.', true);
         } else {
-          messageElem.textContent = data.error || 'There was an issue subscribing.';
+          setMessage('Something went wrong. Please try again shortly.', true);
         }
       } catch (err) {
-        console.error(err);
-        messageElem.textContent = 'Unable to connect to the server. Please try again later.';
+        setMessage('Network error. Is the server running?', true);
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalBtnText || 'Sign Me Up';
+        }
       }
     });
   }

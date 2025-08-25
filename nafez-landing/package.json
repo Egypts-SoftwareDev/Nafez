@@ -1,0 +1,17 @@
+{
+  "name": "nafez-landing",
+  "version": "1.0.0",
+  "description": "Landing page for Nafez crowdfunding platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "nafez",
+    "landing page",
+    "crowdfunding"
+  ],
+  "author": "Nafez",
+  "license": "MIT",
+  "dependencies": {}
+}
