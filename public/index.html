@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nafez – Coming Soon</title>
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
+  </head>
+  <body>
+    <!-- Top bar presenting Sam Software Solutions and Nafez logo -->
+    <header class="top-bar">
+      <div class="presenting">
+        <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" />
+        <span class="present-text">Presents</span>
+      </div>
+      <div class="nafez-logo-large">
+        <img src="./images/nafez-logo.png" alt="Nafez logo" />
+      </div>
+    </header>
+
+    <main>
+      <!-- Hero section with tagline and features -->
+      <section class="hero">
+        <h2 class="tagline">The region's first crowdfunding platform.</h2>
+        <div class="features">
+          <div class="feature">
+            <div class="icon">🤝</div>
+            <span class="feature-label">Back</span>
+          </div>
+          <div class="feature">
+            <div class="icon">💰</div>
+            <span class="feature-label">Fund</span>
+          </div>
+          <div class="feature">
+            <div class="icon">📈</div>
+            <span class="feature-label">Grow</span>
+          </div>
+        </div>
+        <p class="subtagline">Designed to empower the techies of the region.</p>
+        <a href="#signup-section" class="cta-button">Find out more</a>
+      </section>
+
+      <!-- Sign-up section -->
+      <section id="signup-section" class="signup">
+        <h3>Sign up for early access!</h3>
+        <form id="subscribe-form" action="#" method="post">
+          <input type="text" id="name" name="name" placeholder="Your name (optional)" />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Your email"
+            required
+          />
+          <div class="terms">
+            <input type="checkbox" id="agree" name="agree" required />
+            <label for="agree">I agree to the <a href="#" target="_blank">Terms of Use</a> and <a href="#" target="_blank">Privacy Policy</a></label>
+          </div>
+          <button type="submit" class="signup-button">Sign Me Up</button>
+        </form>
+        <p class="message" id="message"></p>
+      </section>
+    </main>
+
+    <!-- Footer with links and credits -->
+    <footer>
+      <div class="footer-links">
+        <div class="column">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="#">Crowdfunding</a></li>
+            <li><a href="#">Fixed vs Flexible</a></li>
+            <li><a href="#">Intizam</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Trust & Safety</a></li>
+            <li><a href="#">Help & Support</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>Entrepreneurs</h4>
+          <ul>
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Us vs Competitors</a></li>
+            <li><a href="#">Education Center</a></li>
+          </ul>
+        </div>
+        <div class="column signup-inline">
+          <h4>Stay informed</h4>
+          <p>Get updates and news.</p>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="bottom-left">
+          <img src="./images/nafez-logo.png" alt="Nafez small logo" class="bottom-logo" />
+          <span>&copy; <span id="year"></span> Nafez &amp; Co. All rights reserved.</span>
+        </div>
+        <div class="bottom-middle">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+          <a href="#">Accessibility</a>
+        </div>
+        <div class="bottom-right">
+          Powered by
+          <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="sss-footer-logo" />
+        </div>
+      </div>
+    </footer>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
