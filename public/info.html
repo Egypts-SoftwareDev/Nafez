@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nafez – How It Works</title>
+    <!-- Reuse main styles and include additional page-specific styles -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/info.css" />
+    <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
+  </head>
+  <body>
+    <!-- Header with Nafez logo and navigation -->
+    <header class="info-header">
+      <a href="/" class="home-link">
+        <img src="./images/nafez-logo.png" alt="Nafez logo" class="info-logo" />
+      </a>
+      <nav class="info-nav">
+        <a href="/" class="info-nav-link">Home</a>
+        <a href="/info.html" class="info-nav-link active">How It Works</a>
+      </nav>
+    </header>
+
+    <main class="info-main">
+      <!-- Introduction section -->
+      <section class="intro-section">
+        <h1>The region's first crowdfunding platform.</h1>
+        <p class="intro-tagline">Nafez is an online crowdfunding platform that connects adventurous
+          <span class="highlight seekers-highlight">Seekers</span>
+          with supportive
+          <span class="highlight backers-highlight">Backers</span>.
+        </p>
+      </section>
+
+      <!-- Seekers and Backers explanation -->
+      <section class="seekers-backers-section">
+        <div class="explain-card seekers-card">
+          <h2 class="card-title seekers-title">Seekers</h2>
+          <p class="card-desc">Entrepreneurs with ideas or running businesses in need of support.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon">💡</span>
+              <span class="feature-text">Ideas to Reality</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">📣</span>
+              <span class="feature-text">Exposure & Funding</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">🤝</span>
+              <span class="feature-text">Collaborative Growth</span>
+            </div>
+          </div>
+        </div>
+        <div class="explain-card backers-card">
+          <h2 class="card-title backers-title">Backers</h2>
+          <p class="card-desc">Opportunists that back successful campaigns and reap the benefits.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon">✅</span>
+              <span class="feature-text">No Risk</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">🎁</span>
+              <span class="feature-text">Guaranteed Rewards</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon">📈</span>
+              <span class="feature-text">Support Innovation</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- How it works section -->
+      <section class="how-section">
+        <h2>How Does It Work?</h2>
+        <p class="how-desc">
+          We connect entrepreneurs with businesses or ideas
+          <strong>[Seekers]</strong> to opportunists that are willing to back them
+          <strong>[Backers]</strong>.
+        </p>
+        <div class="info-grid">
+          <div class="info-card">
+            <h3>No Risk. Just Reward.</h3>
+            <p>
+              If a campaign isn't fully funded in time, then backers get their
+              money back. Your support always matters, and you never lose out.
+            </p>
+          </div>
+          <div class="info-card">
+            <h3>Prepare to Succeed</h3>
+            <p>
+              Seekers can use our <strong>Seekers+</strong> plan as well as our
+              free resource center to ensure that their campaign is ready to
+              receive funding.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to action -->
+      <section class="cta-section">
+        <h2>Ready to bring your ideas to life?</h2>
+        <a href="/" class="cta-button">Get Started</a>
+      </section>
+    </main>
+
+    <!-- Footer reuse from landing page -->
+    <footer>
+      <div class="footer-links">
+        <div class="column">
+          <h4>Discover</h4>
+          <ul>
+            <li><a href="#">Crowdfunding</a></li>
+            <li><a href="#">Fixed vs Flexible</a></li>
+            <li><a href="#">Intizam</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>About</h4>
+          <ul>
+            <li><a href="#">About us</a></li>
+            <li><a href="#">Trust & Safety</a></li>
+            <li><a href="#">Help & Support</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>Entrepreneurs</h4>
+          <ul>
+            <li><a href="#">How it works</a></li>
+            <li><a href="#">Us vs Competitors</a></li>
+            <li><a href="#">Education Center</a></li>
+          </ul>
+        </div>
+        <div class="column signup-inline">
+          <h4>Stay informed</h4>
+          <p>Get updates and news.</p>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="bottom-left">
+          <img src="./images/nafez-logo.png" alt="Nafez small logo" class="bottom-logo" />
+          <span>&copy; <span id="year-info"></span> Nafez &amp; Co. All rights reserved.</span>
+        </div>
+        <div class="bottom-middle">
+          <a href="#">Terms</a>
+          <a href="#">Privacy</a>
+          <a href="#">Cookies</a>
+          <a href="#">Accessibility</a>
+        </div>
+        <div class="bottom-right">
+          Powered by
+          <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="sss-footer-logo" />
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Set current year in footer
+      document.getElementById('year-info').textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
