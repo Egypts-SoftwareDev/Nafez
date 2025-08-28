@@ -1,7 +1,4 @@
-# Dependencies
-node_modules/
 
-# Build output
 dist/
 build/
 
@@ -35,6 +32,3 @@ coverage/
 .DS_Store
 Thumbs.db
 
-# Subscriber data
-subscribers.json
-data/

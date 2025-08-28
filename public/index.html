@@ -7,11 +7,6 @@
     <title>Nafez – Coming Soon</title>
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
-<<<<<<< HEAD
-  </head>
-  <body>
-    <!-- Top bar presenting Sam Software Solutions and Nafez logo -->
-=======
     <!--
       Include anime.js from a CDN.  This script must be loaded before
       our application script so that the animations defined in
@@ -31,39 +26,11 @@
     <!-- Top bar presenting Sam Software Solutions and space for a small Nafez logo.
          The small logo is initially hidden and fades in when the hero section
          is activated.  See script.js and styles.css for the logic. -->
->>>>>>> c1089d0 (chore: last working landing build ready to push)
     <header class="top-bar">
       <div class="presenting">
         <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" />
         <span class="present-text">Presents</span>
       </div>
-<<<<<<< HEAD
-      <div class="nafez-logo-large">
-        <img src="./images/nafez-logo.png" alt="Nafez logo" />
-      </div>
-    </header>
-
-    <main>
-      <!-- Hero section with tagline and features -->
-      <section class="hero">
-        <h2 class="tagline">The region's first crowdfunding platform.</h2>
-        <div class="features">
-          <div class="feature">
-            <div class="icon">🤝</div>
-            <span class="feature-label">Back</span>
-          </div>
-          <div class="feature">
-            <div class="icon">💰</div>
-            <span class="feature-label">Fund</span>
-          </div>
-          <div class="feature">
-            <div class="icon">📈</div>
-            <span class="feature-label">Grow</span>
-          </div>
-        </div>
-        <p class="subtagline">Designed to empower the techies of the region.</p>
-        <a href="/info.html" class="cta-button">Find out more</a>
-=======
       <!-- No small logo here.  The large logo shrinks into the top bar instead -->
     </header>
 
@@ -105,7 +72,6 @@
           <p class="subtagline">Designed to empower the <span id="audienceWord">techies</span> of the region.</p>
           <a href="/info.html" class="cta-button">Find out more</a>
         </div>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
       </section>
 
       <!-- Sign-up section -->
@@ -121,103 +87,76 @@
             required
           />
           <div class="terms">
-            <input type="checkbox" id="agree" name="agree" required />
-<<<<<<< HEAD
-            <label for="agree">I agree to the <a href="#" target="_blank">Terms of Use</a> and <a href="#" target="_blank">Privacy Policy</a></label>
-=======
-            <label for="agree">I agree to the <a href="/terms.html" target="_blank">Terms of Use</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a></label>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+            <input type="checkbox" id="agree" />
+            <label for="agree">I agree to the <a href="/terms.html">Terms</a> and <a href="/privacy.html">Privacy Policy</a>.</label>
           </div>
-          <button type="submit" class="signup-button">Sign Me Up</button>
+          <button type="submit" class="signup-button">Sign up</button>
+          <p id="message" class="message"></p>
         </form>
-        <p class="message" id="message"></p>
       </section>
+
+      <!-- Modal overlay and pop‑up panes for the Back/Fund/Grow features -->
+      <div class="modal-overlay" id="modalOverlay">
+        <div class="modal" id="modal-back">
+          <h3>Back Projects</h3>
+          <p>Nafez allows you to support entrepreneurs and creatives by pledging funds to their campaigns. As a backer you’ll help bring ideas to life and receive exclusive rewards in return.</p>
+          <ul>
+            <li>Explore projects and discover inspiring stories.</li>
+            <li>Select a reward tier that matches your contribution.</li>
+            <li>Track progress and celebrate success with your creators.</li>
+          </ul>
+          <button class="close-modal">Close</button>
+        </div>
+        <div class="modal" id="modal-fund">
+          <h3>Fund Your Ideas</h3>
+          <p>As a seeker you can raise the capital you need to prototype, build and scale. Share your vision, set your funding goal and let the community propel you forward.</p>
+          <ul>
+            <li>Create a compelling campaign story with photos and videos.</li>
+            <li>Set funding targets and offer attractive reward tiers.</li>
+            <li>Engage with your backers through updates and comments.</li>
+          </ul>
+          <button class="close-modal">Close</button>
+        </div>
+        <div class="modal" id="modal-grow">
+          <h3>Grow Together</h3>
+          <p>Nafez fosters a thriving community of innovators and supporters. Through collaboration, both seekers and backers grow together—sharing knowledge, resources and opportunities.</p>
+          <ul>
+            <li>Network with other entrepreneurs and industry experts.</li>
+            <li>Receive mentorship through our Seekers+ program.</li>
+            <li>Unlock new markets and partnerships as your project succeeds.</li>
+          </ul>
+          <button class="close-modal">Close</button>
+        </div>
+      </div>
     </main>
 
-<<<<<<< HEAD
-=======
-    <!-- Modal overlay and pop‑up panes for the Back/Fund/Grow features -->
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal" id="modal-back">
-        <h3>Back Projects</h3>
-        <p>Nafez allows you to support entrepreneurs and creatives by pledging funds to their campaigns. As a backer you’ll help bring ideas to life and receive exclusive rewards in return.</p>
-        <ul>
-          <li>Explore projects and discover inspiring stories.</li>
-          <li>Select a reward tier that matches your contribution.</li>
-          <li>Track progress and celebrate success with your creators.</li>
-        </ul>
-        <button class="close-modal">Close</button>
-      </div>
-      <div class="modal" id="modal-fund">
-        <h3>Fund Your Ideas</h3>
-        <p>As a seeker you can raise the capital you need to prototype, build and scale. Share your vision, set your funding goal and let the community propel you forward.</p>
-        <ul>
-          <li>Create a compelling campaign story with photos and videos.</li>
-          <li>Set funding targets and offer attractive reward tiers.</li>
-          <li>Engage with your backers through updates and comments.</li>
-        </ul>
-        <button class="close-modal">Close</button>
-      </div>
-      <div class="modal" id="modal-grow">
-        <h3>Grow Together</h3>
-        <p>Nafez fosters a thriving community of innovators and supporters. Through collaboration, both seekers and backers grow together—sharing knowledge, resources and opportunities.</p>
-        <ul>
-          <li>Network with other entrepreneurs and industry experts.</li>
-          <li>Receive mentorship through our Seekers+ program.</li>
-          <li>Unlock new markets and partnerships as your project succeeds.</li>
-        </ul>
-        <button class="close-modal">Close</button>
-      </div>
-    </div>
-
->>>>>>> c1089d0 (chore: last working landing build ready to push)
     <!-- Footer with links and credits -->
     <footer>
       <div class="footer-links">
         <div class="column">
           <h4>Discover</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">Crowdfunding</a></li>
-            <li><a href="#">Fixed vs Flexible</a></li>
-            <li><a href="#">Intizam</a></li>
-=======
             <li><a href="/crowdfunding.html">Crowdfunding</a></li>
             <li><a href="/fixed-vs-flexible.html">Fixed vs Flexible</a></li>
             <li><a href="/intizam.html">Intizam</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column">
           <h4>About</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Trust & Safety</a></li>
-            <li><a href="#">Help & Support</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact Us</a></li>
-=======
             <li><a href="/about-us.html">About us</a></li>
             <li><a href="/trust-safety.html">Trust &amp; Safety</a></li>
             <li><a href="/help-support.html">Help &amp; Support</a></li>
             <li><a href="/careers.html">Careers</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column">
           <h4>Entrepreneurs</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">How it works</a></li>
-            <li><a href="#">Us vs Competitors</a></li>
-            <li><a href="#">Education Center</a></li>
-=======
             <li><a href="/how-it-works.html">How it works</a></li>
             <li><a href="/us-vs-competitors.html">Us vs Competitors</a></li>
             <li><a href="/education-center.html">Education Center</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column signup-inline">
@@ -231,17 +170,10 @@
           <span>&copy; <span id="year"></span> Nafez &amp; Co. All rights reserved.</span>
         </div>
         <div class="bottom-middle">
-<<<<<<< HEAD
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Cookies</a>
-          <a href="#">Accessibility</a>
-=======
           <a href="/terms.html">Terms</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/cookies.html">Cookies</a>
           <a href="/accessibility.html">Accessibility</a>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
         </div>
         <div class="bottom-right">
           Powered by
@@ -253,3 +185,4 @@
     <script src="./js/script.js"></script>
   </body>
 </html>
+

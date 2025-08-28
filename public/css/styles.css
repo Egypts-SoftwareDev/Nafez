@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 /* When positioning the hero content (tagline, feature boxes and CTA) we
    avoid using a large negative margin.  A large negative margin was
    previously used to pull the content upwards into the space left by
@@ -12,7 +10,6 @@
 .hero-content {
   margin-top: 0;
 }
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 /* Root color variables */
 :root {
   --primary: #cfe468; /* Soft lime green for highlights */
@@ -58,11 +55,6 @@ body {
   letter-spacing: 0.1rem;
 }
 
-<<<<<<< HEAD
-.nafez-logo-large img {
-  max-width: 350px;
-  height: auto;
-=======
 /* ---------------------------------------------------------------------
    HERO LOGO AND NAV LOGO
 
@@ -349,7 +341,6 @@ body {
 #audienceWord.fade-in {
   opacity: 1;
   transform: translateY(0);
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 }
 
 main {
@@ -365,32 +356,6 @@ main {
 
 
 /* Hero section */
-<<<<<<< HEAD
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  gap: 1.5rem;
-}
-
-.tagline {
-  font-size: 2rem;
-  margin: 0;
-  color: var(--primary);
-  max-width: 800px;
-}
-
-.features {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-=======
 /* The default hero rule is replaced by custom styles above. */
 
 /* Larger tagline for greater impact */
@@ -416,19 +381,12 @@ main {
 /* Feature boxes are larger to accommodate custom icons.  The
    dimensions are square and leave room for an image or a larger
    emoji. */
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 .feature {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 2px solid var(--primary);
-<<<<<<< HEAD
-  border-radius: 8px;
-  padding: 1rem;
-  width: 80px;
-  height: 80px;
-=======
   border-radius: 12px;
   padding: 1.5rem;
   /* Make the feature cards larger and rectangular to accommodate
@@ -459,36 +417,8 @@ main {
 .feature:hover .icon,
 .feature:hover .feature-label {
   color: var(--secondary);
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 }
 
-/* Interactive hover state for feature boxes */
-.feature:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  cursor: pointer;
-}
-.feature:hover .icon,
-.feature:hover .feature-label {
-  color: var(--secondary);
-}
-
-<<<<<<< HEAD
-.icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
-  color: var(--primary);
-}
-
-.feature-label {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
-
-.subtagline {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-=======
 /* Icon styling.  If a PNG is used instead of an emoji, set
    background-size to contain.  The default font-based icons are
    enlarged. */
@@ -528,27 +458,19 @@ main {
   color: var(--text-muted);
   margin-top: 1rem;
   margin-bottom: 2rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 }
 
 .cta-button {
   display: inline-block;
-<<<<<<< HEAD
-  padding: 0.75rem 2rem;
-=======
   /* Larger button dimensions */
   padding: 1.25rem 3rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
   border-radius: 999px;
   background-color: var(--primary);
   color: var(--secondary);
   font-weight: bold;
   text-decoration: none;
   transition: background-color 0.3s ease;
-<<<<<<< HEAD
-=======
   font-size: 1.2rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 }
 
 .cta-button:hover {
@@ -559,9 +481,6 @@ main {
 #signup-section {
   width: 100%;
   max-width: 600px;
-<<<<<<< HEAD
-  margin-top: 2rem;
-=======
   /* Reduce the margin above the sign‑up section so it appears
      closer to the tagline. */
   /* Bring the sign‑up section closer to the tagline. */
@@ -573,7 +492,6 @@ main {
      sign‑up form so they don’t overlap and to improve the visual
      hierarchy. */
   margin-top: 1.5rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
   padding: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 8px;
@@ -639,8 +557,6 @@ input[type='text']::placeholder {
   background-color: var(--accent);
 }
 
-<<<<<<< HEAD
-=======
 /* -------------------------------------------------------------------
    MODAL OVERLAY AND CONTENT
 
@@ -708,7 +624,6 @@ input[type='text']::placeholder {
   user-select: none;
 }
 
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 .message {
   margin-top: 1rem;
   font-size: 0.9rem;
@@ -805,13 +720,6 @@ footer {
   }
   .features {
     gap: 2rem;
-  }
-  .feature {
-    width: 100px;
-    height: 100px;
-  }
-  .feature-label {
-    font-size: 1rem;
   }
   #signup-section {
     max-width: 500px;
