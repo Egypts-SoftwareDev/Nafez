@@ -1,2 +1,13 @@
+<<<<<<< HEAD
 subscribers.json
 subscribers.json
+=======
+﻿node_modules/
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+.env
+data/subscribers.json
+>>>>>>> c1089d0 (chore: last working landing build ready to push)

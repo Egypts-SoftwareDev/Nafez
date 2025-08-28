@@ -169,6 +169,98 @@
   color: var(--text-light);
 }
 
+<<<<<<< HEAD
+=======
+/* Manual sections for backers and seekers */
+.manual-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.04);
+  transition: background-color 0.3s ease;
+}
+.manual-section:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.manual-section h2 {
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.manual-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+.manual-list {
+  list-style: none;
+  counter-reset: manual-step-counter;
+  padding-left: 0;
+}
+.manual-list li {
+  position: relative;
+  margin: 0.75rem 0 0.75rem 2rem;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+.manual-list li::before {
+  content: counter(manual-step-counter) ".";
+  counter-increment: manual-step-counter;
+  position: absolute;
+  left: -2rem;
+  top: 0;
+  font-weight: bold;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+/* Categories section */
+.categories-section {
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.04);
+  transition: background-color 0.3s ease;
+}
+.categories-section:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+.categories-section h2 {
+  font-size: 1.6rem;
+  color: var(--primary);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+.categories-desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+}
+.categories-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding-left: 0;
+  margin: 0 0 1.5rem 0;
+}
+.categories-list li {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.categories-list li:hover {
+  background-color: var(--primary);
+  color: var(--secondary);
+}
+
+>>>>>>> c1089d0 (chore: last working landing build ready to push)
 /* Call to action section */
 .cta-section {
   text-align: center;
