@@ -169,8 +169,6 @@
   color: var(--text-light);
 }
 
-<<<<<<< HEAD
-=======
 /* Manual sections for backers and seekers */
 .manual-section {
   margin-bottom: 3rem;
@@ -260,7 +258,6 @@
   color: var(--secondary);
 }
 
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 /* Call to action section */
 .cta-section {
   text-align: center;

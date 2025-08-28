@@ -1,7 +1,3 @@
-// Wait for the DOM to load fully
-<<<<<<< HEAD
-document.addEventListener('DOMContentLoaded', function () {
-=======
 /**
  * Script for the Nafez landing page.
  *
@@ -16,16 +12,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', function () {
   // 1. Update copyright year in the footer.
->>>>>>> c1089d0 (chore: last working landing build ready to push)
   const yearSpan = document.getElementById('year');
   if (yearSpan) {
     yearSpan.textContent = new Date().getFullYear();
   }
 
-<<<<<<< HEAD
-=======
   // 2. Handle the newsletter subscription form submission.
->>>>>>> c1089d0 (chore: last working landing build ready to push)
   const form = document.getElementById('subscribe-form');
   const messageElem = document.getElementById('message');
 
@@ -64,8 +56,6 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   }
-<<<<<<< HEAD
-=======
 
   /*
     3. Animations: instead of relying on anime.js (which may not load
@@ -237,5 +227,4 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
   });
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 });
