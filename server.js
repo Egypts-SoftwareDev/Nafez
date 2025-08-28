@@ -17,7 +17,13 @@ const url = require('url');
 // Server configuration
 const PORT = process.env.PORT || 3000;
 const staticDir = path.join(__dirname, 'public');
-const subscribersFile = path.join(__dirname, 'subscribers.json');
+const dataDir = path.join(__dirname, 'data');
+const subscribersFile = path.join(dataDir, 'subscribers.json');
+
+// Ensure the data directory exists
+if (!fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
 
 // Ensure the subscribers file exists
 if (!fs.existsSync(subscribersFile)) {
