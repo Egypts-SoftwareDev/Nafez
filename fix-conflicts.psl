@@ -1,0 +1,272 @@
+# Nafez Git Conflict Resolver for Windows PowerShell
+# Save this as fix-conflicts.ps1 and run it in your project directory
+
+Write-Host "🔧 Nafez Git Conflict Resolver" -ForegroundColor Cyan
+Write-Host "================================" -ForegroundColor Cyan
+
+# Function to fix conflicts in a file
+function Fix-GitConflicts {
+    param(
+        [string]$FilePath,
+        [string]$Strategy = "incoming"  # "incoming", "current", or "both"
+    )
+    
+    if (-not (Test-Path $FilePath)) {
+        Write-Host "❌ File not found: $FilePath" -ForegroundColor Red
+        return
+    }
+    
+    $content = Get-Content $FilePath -Raw
+    
+    # Check if file has conflicts
+    if ($content -match '<<<<<<< HEAD') {
+        Write-Host "📝 Fixing conflicts in: $FilePath" -ForegroundColor Yellow
+        
+        # Create backup
+        $backupPath = "$FilePath.backup"
+        Copy-Item $FilePath $backupPath
+        Write-Host "   ✓ Backup created: $backupPath" -ForegroundColor Green
+        
+        # Fix based on strategy
+        switch ($Strategy) {
+            "incoming" {
+                # Keep incoming changes (after =======)
+                $pattern = '(?s)<<<<<<< HEAD.*?=======(.*?)>>>>>>> [a-f0-9]+'
+                $fixed = $content -replace $pattern, '$1'
+            }
+            "current" {
+                # Keep current changes (before =======)
+                $pattern = '(?s)<<<<<<< HEAD(.*?)=======.*?>>>>>>> [a-f0-9]+'
+                $fixed = $content -replace $pattern, '$1'
+            }
+            "both" {
+                # Keep both changes
+                $fixed = $content -replace '<<<<<<< HEAD', ''
+                $fixed = $fixed -replace '=======', ''
+                $fixed = $fixed -replace '>>>>>>> [a-f0-9]+.*', ''
+            }
+        }
+        
+        # Save fixed file
+        $fixed | Out-File -FilePath $FilePath -Encoding UTF8 -NoNewline
+        Write-Host "   ✓ Conflicts resolved" -ForegroundColor Green
+    } else {
+        Write-Host "   ℹ No conflicts found in: $FilePath" -ForegroundColor Gray
+    }
+}
+
+# Function to find all conflicted files
+function Get-ConflictedFiles {
+    $files = @()
+    
+    # Get all files with conflicts from git
+    $gitStatus = git status --porcelain
+    foreach ($line in $gitStatus) {
+        if ($line -match '^UU |^AA ') {
+            $file = $line.Substring(3).Trim()
+            $files += $file
+        }
+    }
+    
+    # Also check common files that might have conflicts
+    $commonFiles = @(
+        "public/index.html",
+        "public/css/styles.css",
+        "public/js/script.js",
+        ".gitignore",
+        "package.json"
+    )
+    
+    foreach ($file in $commonFiles) {
+        if (Test-Path $file) {
+            $content = Get-Content $file -Raw -ErrorAction SilentlyContinue
+            if ($content -match '<<<<<<< HEAD') {
+                if ($files -notcontains $file) {
+                    $files += $file
+                }
+            }
+        }
+    }
+    
+    return $files
+}
+
+# Main execution
+Write-Host "`n📂 Current directory: $(Get-Location)" -ForegroundColor Cyan
+Write-Host "`n🔍 Searching for files with conflicts..." -ForegroundColor Yellow
+
+$conflictedFiles = Get-ConflictedFiles
+
+if ($conflictedFiles.Count -eq 0) {
+    Write-Host "✅ No conflicts found!" -ForegroundColor Green
+} else {
+    Write-Host "`n⚠️  Found $($conflictedFiles.Count) files with conflicts:" -ForegroundColor Yellow
+    foreach ($file in $conflictedFiles) {
+        Write-Host "   - $file" -ForegroundColor White
+    }
+    
+    Write-Host "`n📋 Choose resolution strategy:" -ForegroundColor Cyan
+    Write-Host "   1. Keep incoming changes (recommended for merges)" -ForegroundColor White
+    Write-Host "   2. Keep current changes (your local version)" -ForegroundColor White
+    Write-Host "   3. Keep both changes" -ForegroundColor White
+    Write-Host "   4. Skip automatic fix" -ForegroundColor White
+    
+    $choice = Read-Host "`nEnter choice (1-4)"
+    
+    if ($choice -ne "4") {
+        $strategy = switch ($choice) {
+            "1" { "incoming" }
+            "2" { "current" }
+            "3" { "both" }
+            default { "incoming" }
+        }
+        
+        Write-Host "`n🔧 Applying fix strategy: $strategy" -ForegroundColor Cyan
+        
+        foreach ($file in $conflictedFiles) {
+            Fix-GitConflicts -FilePath $file -Strategy $strategy
+        }
+    }
+}
+
+# Fix specific known issues
+Write-Host "`n🔧 Applying specific fixes..." -ForegroundColor Cyan
+
+# Fix .gitignore
+Write-Host "`n📝 Creating clean .gitignore..." -ForegroundColor Yellow
+@"
+node_modules/
+dist/
+build/
+*.log
+.DS_Store
+Thumbs.db
+.env
+.env.local
+data/
+subscribers.json
+users.json
+*.backup
+"@ | Out-File -FilePath .gitignore -Encoding UTF8 -NoNewline
+Write-Host "   ✓ .gitignore updated" -ForegroundColor Green
+
+# Check if package.json needs dependencies
+if (Test-Path "package.json") {
+    $packageContent = Get-Content "package.json" -Raw | ConvertFrom-Json
+    
+    if (-not $packageContent.dependencies) {
+        Write-Host "`n📝 Updating package.json with dependencies..." -ForegroundColor Yellow
+        
+        # Determine which project this is
+        $isAlpha = Test-Path "campaigns.json"
+        
+        if ($isAlpha) {
+            # Alpha package.json
+            @"
+{
+  "name": "nafez-alpha",
+  "version": "1.0.0",
+  "description": "Nafez alpha testing platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["nafez", "crowdfunding", "alpha"],
+  "author": "Nafez",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
+"@ | Out-File -FilePath package.json -Encoding UTF8 -NoNewline
+        } else {
+            # Landing package.json
+            @"
+{
+  "name": "nafez-landing",
+  "version": "1.0.0",
+  "description": "Landing page for Nafez crowdfunding platform",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": ["nafez", "crowdfunding", "landing"],
+  "author": "Nafez",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "helmet": "^7.1.0",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^7.1.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
+"@ | Out-File -FilePath package.json -Encoding UTF8 -NoNewline
+        }
+        Write-Host "   ✓ package.json updated" -ForegroundColor Green
+    }
+}
+
+# Create .env if it doesn't exist
+if (-not (Test-Path ".env")) {
+    Write-Host "`n📝 Creating .env file..." -ForegroundColor Yellow
+    
+    $isAlpha = Test-Path "campaigns.json"
+    
+    if ($isAlpha) {
+        @"
+PORT=4000
+NODE_ENV=development
+ALPHA_PASSWORD=mvpSecret
+ADMIN_TOKEN=your-secret-admin-token
+"@ | Out-File -FilePath .env -Encoding UTF8 -NoNewline
+    } else {
+        @"
+PORT=3000
+NODE_ENV=development
+ADMIN_TOKEN=your-secret-admin-token
+"@ | Out-File -FilePath .env -Encoding UTF8 -NoNewline
+    }
+    Write-Host "   ✓ .env created" -ForegroundColor Green
+}
+
+# Install dependencies
+Write-Host "`n📦 Installing npm dependencies..." -ForegroundColor Cyan
+$installChoice = Read-Host "Install npm packages now? (y/n)"
+if ($installChoice -eq "y") {
+    npm install
+    Write-Host "   ✓ Dependencies installed" -ForegroundColor Green
+}
+
+# Git status check
+Write-Host "`n📊 Current Git Status:" -ForegroundColor Cyan
+git status --short
+
+# Offer to commit
+Write-Host "`n💾 Ready to commit changes?" -ForegroundColor Cyan
+$commitChoice = Read-Host "Commit and push changes? (y/n)"
+if ($commitChoice -eq "y") {
+    git add .
+    git commit -m "fix: resolve merge conflicts and clean up codebase"
+    
+    Write-Host "`n⬆️  Pushing to GitHub..." -ForegroundColor Yellow
+    git push origin main
+    Write-Host "   ✓ Changes pushed to GitHub" -ForegroundColor Green
+}
+
+Write-Host "`n✨ Conflict resolution complete!" -ForegroundColor Green
+Write-Host "`n📋 Next steps:" -ForegroundColor Cyan
+Write-Host "   1. Run 'npm start' to test your server" -ForegroundColor White
+Write-Host "   2. Open http://localhost:3000 (landing) or :4000 (alpha)" -ForegroundColor White
+Write-Host "   3. Deploy to production when ready" -ForegroundColor White

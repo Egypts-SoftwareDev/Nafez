@@ -1,26 +1,24 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nafez – Coming Soon</title>
+    <meta name="description" content="Nafez is the region's first crowdfunding platform. Back, fund and grow ideas with a supportive community." />
+    <meta property="og:title" content="Nafez – Coming Soon" />
+    <meta property="og:description" content="Back, fund and grow ideas with a supportive community." />
+    <meta property="og:image" content="/images/nafez-logo.png" />
+    <meta name="theme-color" content="#0a1522" />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
-<<<<<<< HEAD
-  </head>
-  <body>
-    <!-- Top bar presenting Sam Software Solutions and Nafez logo -->
-=======
-    <!--
-      Include anime.js from a CDN.  This script must be loaded before
-      our application script so that the animations defined in
-      public/js/script.js can find the global `anime` object.  If you
-      prefer to host anime.js locally, you can download the file into
-      public/js/anime.min.js and change the src attribute below to
-      "./js/anime.min.js".
-    -->
-    <script
+        <meta name="description" content="Nafez is the region&#39;s first crowdfunding platform. Back, fund and grow ideas with a supportive community." />
+    <meta property="og:title" content="Nafez – Coming Soon" />
+    <meta property="og:description" content="Back, fund and grow ideas with a supportive community." />
+    <meta property="og:image" content="/images/nafez-logo.png" />
+    <meta name="theme-color" content="#0a1522" /><!-- Load anime.js before our app script to enable enhanced animations. -->
+    <script defer
       src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
       integrity="sha512-9V8SX1f2iZb0vC2mM8Vt1zGmB3gI8a0N8lCq5Cwz9vQO4f2C9kqkltqkNY3iia0Qz3wM8Qm62pQ/6X2c6C2R7A=="
       crossorigin="anonymous"
@@ -28,84 +26,55 @@
     ></script>
   </head>
   <body>
-    <!-- Top bar presenting Sam Software Solutions and space for a small Nafez logo.
-         The small logo is initially hidden and fades in when the hero section
-         is activated.  See script.js and styles.css for the logic. -->
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+    <!-- Top bar presenting Sam Software Solutions -->
     <header class="top-bar">
       <div class="presenting">
-        <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" />
+        <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" loading="lazy" decoding="async" />
         <span class="present-text">Presents</span>
       </div>
-<<<<<<< HEAD
-      <div class="nafez-logo-large">
-        <img src="./images/nafez-logo.png" alt="Nafez logo" />
-      </div>
     </header>
 
-    <main>
-      <!-- Hero section with tagline and features -->
-      <section class="hero">
-        <h2 class="tagline">The region's first crowdfunding platform.</h2>
-        <div class="features">
-          <div class="feature">
-            <div class="icon">🤝</div>
-            <span class="feature-label">Back</span>
-          </div>
-          <div class="feature">
-            <div class="icon">💰</div>
-            <span class="feature-label">Fund</span>
-          </div>
-          <div class="feature">
-            <div class="icon">📈</div>
-            <span class="feature-label">Grow</span>
-          </div>
-        </div>
-        <p class="subtagline">Designed to empower the techies of the region.</p>
-        <a href="/info.html" class="cta-button">Find out more</a>
-=======
-      <!-- No small logo here.  The large logo shrinks into the top bar instead -->
-    </header>
+    <a class="skip-link" href="#signup-section" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Skip to signup</a>
 
     <main>
-      <!-- Hero section with a full‑page logo that shrinks when hovered.
-           The hero consists of two parts: the large logo and the hero content.
-           The hero content (tagline, features, subtagline, CTA) is hidden
-           until the hero is activated via hover, at which point the large
-           logo shrinks and the content fades in. -->
+      <!-- Hero section with a full-page logo that shrinks when hovered. -->
       <section class="hero">
         <div class="hero-logo">
-          <img src="./images/nafez-logo.png" alt="Nafez logo" />
+          <img src="./images/nafez-logo.png" alt="Nafez logo" decoding="async" />
         </div>
         <div class="hero-content">
           <h2 class="tagline">The region's first crowdfunding platform.</h2>
           <div class="features">
-            <!-- Each feature card is interactive: clicking opens a modal
-                 with more information.  The data-modal-target
-                 attribute matches the id of the modal to open. -->
-            <div class="feature" data-modal-target="modal-back">
-              <div class="icon">
-                <img src="./images/back-icon.png" alt="Back icon" />
+            <div class="feature" role="button" tabindex="0" aria-label="Learn about Back" aria-controls="modal-back" data-modal-target="modal-back">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+                </svg>
               </div>
               <span class="feature-label">Back</span>
             </div>
-            <div class="feature" data-modal-target="modal-fund">
-              <div class="icon">
-                <img src="./images/fund-icon.png" alt="Fund icon" />
+            <div class="feature" role="button" tabindex="0" aria-label="Learn about Fund" aria-controls="modal-fund" data-modal-target="modal-fund">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1.5" y="4.5" width="21" height="15" rx="2" ry="2"/>
+                  <line x1="1.5" y1="9.5" x2="22.5" y2="9.5"/>
+                </svg>
               </div>
               <span class="feature-label">Fund</span>
             </div>
-            <div class="feature" data-modal-target="modal-grow">
-              <div class="icon">
-                <img src="./images/grow-icon.png" alt="Grow icon" />
+            <div class="feature" role="button" tabindex="0" aria-label="Learn about Grow" aria-controls="modal-grow" data-modal-target="modal-grow">
+              <div class="icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="23 7 16 14 10 8 1 17"/>
+                  <polyline points="17 7 23 7 23 13"/>
+                </svg>
               </div>
               <span class="feature-label">Grow</span>
             </div>
           </div>
-          <p class="subtagline">Designed to empower the <span id="audienceWord">techies</span> of the region.</p>
+          <p class="subtagline">Designed to empower&nbsp;the <span id="audienceWord">techies</span>&nbsp;of the region.</p>
           <a href="/info.html" class="cta-button">Find out more</a>
         </div>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
       </section>
 
       <!-- Sign-up section -->
@@ -122,102 +91,75 @@
           />
           <div class="terms">
             <input type="checkbox" id="agree" name="agree" required />
-<<<<<<< HEAD
-            <label for="agree">I agree to the <a href="#" target="_blank">Terms of Use</a> and <a href="#" target="_blank">Privacy Policy</a></label>
-=======
             <label for="agree">I agree to the <a href="/terms.html" target="_blank">Terms of Use</a> and <a href="/privacy.html" target="_blank">Privacy Policy</a></label>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </div>
           <button type="submit" class="signup-button">Sign Me Up</button>
         </form>
-        <p class="message" id="message"></p>
+        <p class="message" id="message" role="status" aria-live="polite"></p>
       </section>
     </main>
 
-<<<<<<< HEAD
-=======
-    <!-- Modal overlay and pop‑up panes for the Back/Fund/Grow features -->
-    <div class="modal-overlay" id="modalOverlay">
-      <div class="modal" id="modal-back">
-        <h3>Back Projects</h3>
-        <p>Nafez allows you to support entrepreneurs and creatives by pledging funds to their campaigns. As a backer you’ll help bring ideas to life and receive exclusive rewards in return.</p>
+    <!-- Modal overlay and pop-up panes for the Back/Fund/Grow features -->
+    <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+      <div class="modal" id="modal-back" role="dialog" aria-modal="true" aria-labelledby="modal-back-title">
+        <h3 id="modal-back-title">Back Projects</h3>
+        <p>Nafez allows you to support entrepreneurs and creatives by pledging funds to their campaigns. As a backer you'll help bring ideas to life and receive exclusive rewards in return.</p>
         <ul>
           <li>Explore projects and discover inspiring stories.</li>
           <li>Select a reward tier that matches your contribution.</li>
           <li>Track progress and celebrate success with your creators.</li>
         </ul>
-        <button class="close-modal">Close</button>
+        <button class="close-modal" type="button" aria-label="Close modal">Close</button>
       </div>
-      <div class="modal" id="modal-fund">
-        <h3>Fund Your Ideas</h3>
+      <div class="modal" id="modal-fund" role="dialog" aria-modal="true" aria-labelledby="modal-fund-title">
+        <h3 id="modal-fund-title">Fund Your Ideas</h3>
         <p>As a seeker you can raise the capital you need to prototype, build and scale. Share your vision, set your funding goal and let the community propel you forward.</p>
         <ul>
           <li>Create a compelling campaign story with photos and videos.</li>
           <li>Set funding targets and offer attractive reward tiers.</li>
           <li>Engage with your backers through updates and comments.</li>
         </ul>
-        <button class="close-modal">Close</button>
+        <button class="close-modal" type="button" aria-label="Close modal">Close</button>
       </div>
-      <div class="modal" id="modal-grow">
-        <h3>Grow Together</h3>
-        <p>Nafez fosters a thriving community of innovators and supporters. Through collaboration, both seekers and backers grow together—sharing knowledge, resources and opportunities.</p>
+      <div class="modal" id="modal-grow" role="dialog" aria-modal="true" aria-labelledby="modal-grow-title">
+        <h3 id="modal-grow-title">Grow Together</h3>
+        <p>Nafez fosters a thriving community of innovators and supporters. Through collaboration, both seekers and backers grow togetherâ€”sharing knowledge, resources and opportunities.</p>
         <ul>
           <li>Network with other entrepreneurs and industry experts.</li>
           <li>Receive mentorship through our Seekers+ program.</li>
           <li>Unlock new markets and partnerships as your project succeeds.</li>
         </ul>
-        <button class="close-modal">Close</button>
+        <button class="close-modal" type="button" aria-label="Close modal">Close</button>
       </div>
     </div>
 
->>>>>>> c1089d0 (chore: last working landing build ready to push)
     <!-- Footer with links and credits -->
     <footer>
       <div class="footer-links">
         <div class="column">
           <h4>Discover</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">Crowdfunding</a></li>
-            <li><a href="#">Fixed vs Flexible</a></li>
-            <li><a href="#">Intizam</a></li>
-=======
             <li><a href="/crowdfunding.html">Crowdfunding</a></li>
             <li><a href="/fixed-vs-flexible.html">Fixed vs Flexible</a></li>
             <li><a href="/intizam.html">Intizam</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column">
           <h4>About</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Trust & Safety</a></li>
-            <li><a href="#">Help & Support</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Contact Us</a></li>
-=======
             <li><a href="/about-us.html">About us</a></li>
             <li><a href="/trust-safety.html">Trust &amp; Safety</a></li>
             <li><a href="/help-support.html">Help &amp; Support</a></li>
             <li><a href="/careers.html">Careers</a></li>
             <li><a href="/contact-us.html">Contact Us</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column">
           <h4>Entrepreneurs</h4>
           <ul>
-<<<<<<< HEAD
-            <li><a href="#">How it works</a></li>
-            <li><a href="#">Us vs Competitors</a></li>
-            <li><a href="#">Education Center</a></li>
-=======
             <li><a href="/how-it-works.html">How it works</a></li>
             <li><a href="/us-vs-competitors.html">Us vs Competitors</a></li>
             <li><a href="/education-center.html">Education Center</a></li>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
           </ul>
         </div>
         <div class="column signup-inline">
@@ -231,17 +173,10 @@
           <span>&copy; <span id="year"></span> Nafez &amp; Co. All rights reserved.</span>
         </div>
         <div class="bottom-middle">
-<<<<<<< HEAD
-          <a href="#">Terms</a>
-          <a href="#">Privacy</a>
-          <a href="#">Cookies</a>
-          <a href="#">Accessibility</a>
-=======
           <a href="/terms.html">Terms</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/cookies.html">Cookies</a>
           <a href="/accessibility.html">Accessibility</a>
->>>>>>> c1089d0 (chore: last working landing build ready to push)
         </div>
         <div class="bottom-right">
           Powered by
@@ -252,4 +187,8 @@
 
     <script src="./js/script.js"></script>
   </body>
-</html>
+  </html>
+
+
+
+

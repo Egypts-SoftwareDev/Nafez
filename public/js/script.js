@@ -1,48 +1,39 @@
-// Wait for the DOM to load fully
-<<<<<<< HEAD
-document.addEventListener('DOMContentLoaded', function () {
-=======
 /**
  * Script for the Nafez landing page.
  *
- * This file handles a few responsibilities:
- *  1. Setting the current year in the footer.
- *  2. Handling subscription form submission via AJAX.
- *  3. Animating the hero section: shrinking the large Nafez logo when
- *     hovering over the hero area and rotating the audience word in the
- *     tagline.  These animations rely on the anime.js library, which
- *     should be loaded before this script (via CDN or local copy).
+ * Responsibilities:
+ *  1) Set current year in footer(s).
+ *  2) Handle subscription form submission via fetch.
+ *  3) Interactions: hero shrink on hover, rotating audience word,
+ *     feature modals and subtle hover animations.
+ *
+ * If anime.js is available (loaded globally), some animations are
+ * enhanced. Otherwise, CSS transitions provide graceful fallbacks.
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-  // 1. Update copyright year in the footer.
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+  // 1) Footer year(s)
   const yearSpan = document.getElementById('year');
-  if (yearSpan) {
-    yearSpan.textContent = new Date().getFullYear();
-  }
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+  const yearInfoSpan = document.getElementById('year-info');
+  if (yearInfoSpan) yearInfoSpan.textContent = new Date().getFullYear();
 
-<<<<<<< HEAD
-=======
-  // 2. Handle the newsletter subscription form submission.
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+  // 2) Newsletter subscription form
   const form = document.getElementById('subscribe-form');
   const messageElem = document.getElementById('message');
-
   if (form) {
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      messageElem.textContent = '';
-      const email = document.getElementById('email').value.trim();
-      const name = document.getElementById('name').value.trim();
+      if (messageElem) messageElem.textContent = '';
+      const email = (document.getElementById('email') || {}).value?.trim?.() || '';
+      const name = (document.getElementById('name') || {}).value?.trim?.() || '';
       const agreeCheckbox = document.getElementById('agree');
       if (!email) {
-        messageElem.textContent = 'Please enter a valid email address.';
+        if (messageElem) messageElem.textContent = 'Please enter a valid email address.';
         return;
       }
-      // Ensure user agreed to Terms and Privacy
-      if (agreeCheckbox && !agreeCheckbox.checked) {
-        messageElem.textContent = 'Please agree to the Terms and Privacy Policy to continue.';
+      if (agreeCheckbox && !(agreeCheckbox).checked) {
+        if (messageElem) messageElem.textContent = 'Please agree to the Terms and Privacy Policy to continue.';
         return;
       }
       try {
@@ -51,115 +42,77 @@ document.addEventListener('DOMContentLoaded', function () {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email, name }),
         });
-        const data = await response.json();
+        const data = await response.json().catch(() => ({}));
         if (response.ok) {
-          messageElem.textContent = 'Thank you! We’ll notify you when we launch.';
+          if (messageElem) messageElem.textContent = "Thank you! We'll notify you when we launch.";
           form.reset();
         } else {
-          messageElem.textContent = data.error || 'There was an issue subscribing.';
+          if (messageElem) messageElem.textContent = data.error || 'There was an issue subscribing.';
         }
       } catch (err) {
         console.error(err);
-        messageElem.textContent = 'Unable to connect to the server. Please try again later.';
+        if (messageElem) messageElem.textContent = 'Unable to connect to the server. Please try again later.';
       }
     });
   }
-<<<<<<< HEAD
-=======
 
-  /*
-    3. Animations: instead of relying on anime.js (which may not load
-       locally in this environment), we implement simple interactions
-       using CSS transitions and small bits of JavaScript.  The hero
-       logo will shrink and move upward when the user hovers over the
-       hero section, and the audience word in the tagline will cycle
-       through a list of terms with a fade/translate effect.
-  */
+  // 3) Interactions & animations
   const hero = document.querySelector('.hero');
-  // Select the large logo inside the hero.  In the revised layout the
-  // large logo lives inside a `.hero-logo` element rather than
-  // `.nafez-logo-large`.  This query will return the image if it
-  // exists; if not it will be undefined.  The logo is not used
-  // programmatically anymore (the transformation is handled entirely
-  // in CSS), but we keep this reference in case future logic needs
-  // access to the element.
-  const logoImg = document.querySelector('.hero-logo img');
   const audienceWord = document.getElementById('audienceWord');
 
-  /*
-    Hero activation:  When the user hovers over the hero section, we
-    add the `.active` class to the hero and the `.shrink` class to the
-    header.  This triggers CSS transitions that shrink the large logo,
-    reveal the hero content and fade in the small nav logo.  When the
-    pointer leaves, we remove these classes to reset the layout.
-  */
+  // Keep hero shrunken while a modal is open
+  let modalOpen = false;
   if (hero) {
-    hero.addEventListener('mouseenter', () => {
+    hero.addEventListener('mouseenter', () => { if (!modalOpen) hero.classList.add('active'); });
+    hero.addEventListener('mouseleave', () => { if (!modalOpen) hero.classList.remove('active'); });
+    // On touch/small screens, show the hero content by default
+    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouch || window.innerWidth <= 900) {
       hero.classList.add('active');
-    });
-    hero.addEventListener('mouseleave', () => {
-      hero.classList.remove('active');
-    });
+      hero.addEventListener('touchstart', () => hero.classList.add('active'), { passive: true });
+    }
   }
 
-  // Audience word rotation: cycle through an array of words every
-  // couple of seconds.  We apply CSS classes to fade out, change
-  // the text, then fade in.  The CSS transitions are defined in
-  // styles.css.  If the environment does not support setInterval
-  // (unlikely), this will simply leave the initial word intact.
   if (audienceWord) {
     const words = ['entrepreneurs', 'artists', 'techies', 'innovators', 'youth'];
     let currentIndex = 0;
     setInterval(() => {
-      // Fade out the current word
       audienceWord.classList.remove('fade-in');
       audienceWord.classList.add('fade-out');
       setTimeout(() => {
-        // Update the word after the fade-out completes
         currentIndex = (currentIndex + 1) % words.length;
         audienceWord.textContent = words[currentIndex];
-        // Remove fade-out and trigger fade-in
         audienceWord.classList.remove('fade-out');
         audienceWord.classList.add('fade-in');
-        // Remove fade-in class after animation completes to allow re-trigger
-        setTimeout(() => {
-          audienceWord.classList.remove('fade-in');
-        }, 200);
+        setTimeout(() => audienceWord.classList.remove('fade-in'), 200);
       }, 200);
     }, 2500);
   }
 
-  /*
-    Modal functionality: each feature card has a data-modal-target
-    attribute pointing to the id of the modal it should open.  When
-    clicked, the corresponding modal appears over a semi‑transparent
-    overlay.  The modal and overlay can be closed by clicking the
-    close button or the overlay itself.  We use anime.js for
-    graceful fades and translations if it is available; otherwise
-    the classes alone control visibility.
-  */
+  // Modals: open/close
   const modalOverlay = document.getElementById('modalOverlay');
   const modalButtons = document.querySelectorAll('[data-modal-target]');
   const closeButtons = document.querySelectorAll('.close-modal');
+  let lastFocused = null;
 
   function openModal(modal) {
-    if (!modal) return;
+    if (!modal || !modalOverlay) return;
+    modalOpen = true;
     modal.classList.add('active');
     modalOverlay.classList.add('active');
-    // Animate the modal appearance if anime.js is loaded
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    if (hero) hero.classList.add('active');
     if (window.anime) {
-      anime({
-        targets: modal,
-        opacity: [0, 1],
-        translateY: [-30, 0],
-        duration: 400,
-        easing: 'easeOutQuad'
-      });
+      anime({ targets: modal, opacity: [0, 1], translateY: [-30, 0], duration: 400, easing: 'easeOutQuad' });
     }
+    // Move focus into the modal for accessibility
+    lastFocused = document.activeElement;
+    const focusTarget = modal.querySelector('.close-modal') || modal;
+    focusTarget.focus && focusTarget.focus();
   }
 
   function closeModal(modal) {
-    if (!modal) return;
+    if (!modal || !modalOverlay) return;
     if (window.anime) {
       anime({
         targets: modal,
@@ -167,17 +120,29 @@ document.addEventListener('DOMContentLoaded', function () {
         translateY: [0, -30],
         duration: 400,
         easing: 'easeInQuad',
-        complete: () => {
-          modal.classList.remove('active');
-        }
+        complete: () => modal.classList.remove('active'),
       });
     } else {
       modal.classList.remove('active');
     }
     modalOverlay.classList.remove('active');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    modalOpen = false;
+    if (hero) {
+      // Keep shrunken if pointer still hovers hero, else reset
+      if (hero.matches(':hover')) {
+        hero.classList.add('active');
+      } else {
+        hero.classList.remove('active');
+      }
+    }
+    // Restore focus
+    if (lastFocused && lastFocused.focus) {
+      lastFocused.focus();
+      lastFocused = null;
+    }
   }
 
-  // Open the appropriate modal when a feature card is clicked
   modalButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const targetId = btn.getAttribute('data-modal-target');
@@ -185,57 +150,49 @@ document.addEventListener('DOMContentLoaded', function () {
       openModal(modal);
     });
   });
-
-  // Close button inside each modal
   closeButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const modal = btn.closest('.modal');
-      closeModal(modal);
-    });
+    btn.addEventListener('click', () => closeModal(btn.closest('.modal')));
   });
-
-  // Clicking outside the modal closes it
   if (modalOverlay) {
     modalOverlay.addEventListener('click', (e) => {
       if (e.target === modalOverlay) {
-        document.querySelectorAll('.modal.active').forEach((modal) => {
-          modal.classList.remove('active');
-        });
+        document.querySelectorAll('.modal.active').forEach((m) => m.classList.remove('active'));
         modalOverlay.classList.remove('active');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+      }
+    });
+    // ESC to close any open modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalOpen) {
+        const open = document.querySelector('.modal.active');
+        if (open) closeModal(open);
       }
     });
   }
 
-  /*
-    Add a subtle animation to the feature cards on hover.  When the
-    pointer enters a card, gently scale it up; when the pointer
-    leaves, scale it back down.  This uses anime.js if available,
-    otherwise falls back to CSS transitions defined in the stylesheet.
-  */
+  // Feature card hover (anime.js enhanced)
   const featureCards = document.querySelectorAll('.feature');
   featureCards.forEach((card) => {
     card.addEventListener('mouseenter', () => {
       if (window.anime) {
         anime.remove(card);
-        anime({
-          targets: card,
-          scale: 1.05,
-          duration: 300,
-          easing: 'easeOutQuad'
-        });
+        anime({ targets: card, scale: 1.05, duration: 300, easing: 'easeOutQuad' });
       }
     });
     card.addEventListener('mouseleave', () => {
       if (window.anime) {
         anime.remove(card);
-        anime({
-          targets: card,
-          scale: 1.0,
-          duration: 300,
-          easing: 'easeOutQuad'
-        });
+        anime({ targets: card, scale: 1.0, duration: 300, easing: 'easeOutQuad' });
+      }
+    });
+    // Keyboard activation
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const targetId = card.getAttribute('data-modal-target');
+        const modal = document.getElementById(targetId);
+        openModal(modal);
       }
     });
   });
->>>>>>> c1089d0 (chore: last working landing build ready to push)
 });

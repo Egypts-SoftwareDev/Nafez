@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,21 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nafez – Contact Us</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/info.css" />
     <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-9V8SX1f2iZb0vC2mM8Vt1zGmB3gI8a0N8lCq5Cwz9vQO4f2C9kqkltqkNY3iia0Qz3wM8Qm62pQ/6X2c6C2R7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
-    <header class="top-bar">
-      <div class="presenting">
-        <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" />
-        <span class="present-text">Presents</span>
-      </div>
+    <header class="info-header">
+      <a href="/" class="home-link">
+        <img src="./images/nafez-logo.png" alt="Nafez logo" class="info-logo" />
+      </a>
+      <nav class="info-nav">
+        <a href="/" class="info-nav-link">Home</a>
+        <a href="/contact-us.html" class="info-nav-link active">Contact Us</a>
+      </nav>
     </header>
-    <main style="min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top:2rem; text-align:center;">
-      <h2>Contact Us</h2>
-      <p>If you have any questions or feedback, feel free to reach out. Our team is here to help and will respond as soon as possible.</p>
-      <p>Email: <a href="mailto:support@nafez.com">support@nafez.com</a></p>
-    </main>
+        <main class="info-main">
+      <section class="intro-section">
+        <h1>Contact Us</h1>
+        <p class="intro-tagline">Have questions or feedback? We’d love to hear from you.</p>
+      </section>
+
+      <section class="seekers-backers-section">
+        <div class="explain-card">
+          <h2 class="card-title">Reach Us</h2>
+          <p class="card-desc">Choose the channel that works best for you. Our team aims to respond promptly.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 10a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7A8.5 8.5 0 0 1 4 10a8.5 8.5 0 0 1 8.5-8.5c2.3 0 4.4.9 6 2.4\"/><line x1=\"22\" y1=\"4\" x2=\"12\" y2=\"14\"/></svg>
+              </span>
+              <span class="feature-text"><a href=\"mailto:support@nafez.com\">support@nafez.com</a></span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M22 16.92V19a2 2 0 0 1-2.18 2A19.79 19.79 0 0 1 3 4.18 2 2 0 0 1 5 2h2.09a2 2 0 0 1 2 1.72l.2 1.38a2 2 0 0 1-.57 1.86L7.91 8.09a16 16 0 0 0 8 8l1.13-1.81a2 2 0 0 1 1.86-.57l1.38.2a2 2 0 0 1 1.72 2z\"/></svg>
+              </span>
+              <span class="feature-text">+000 000 0000</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M3 7l9 6 9-6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\"/><path d=\"M3 7l9 6 9-6\"/></svg>
+              </span>
+              <span class="feature-text">Media: press@nafez.example</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="explain-card">
+          <h2 class="card-title">Office</h2>
+          <p class="card-desc">We’re a remote‑first team. Visits are by appointment only.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 1 1 18 0z\"/><circle cx=\"12\" cy=\"10\" r=\"3\"/></svg>
+              </span>
+              <span class="feature-text">City, Country (HQ)</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"2\" x2=\"12\" y2=\"22\"/><polyline points=\"19 15 12 22 5 15\"/></svg>
+              </span>
+              <span class="feature-text">By appointment</span>
+            </div>
+          </div>
+        </div>
+      </section>
     <section id="signup-section" class="signup">
       <h3>Sign up for early access!</h3>
       <form id="subscribe-form" action="#" method="post">

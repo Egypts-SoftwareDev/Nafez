@@ -1,189 +1,66 @@
-<<<<<<< HEAD
-=======
-/* When positioning the hero content (tagline, feature boxes and CTA) we
-   avoid using a large negative margin.  A large negative margin was
-   previously used to pull the content upwards into the space left by
-   the shrinking logo, but it also caused the content to sit too high
-   on the page.  By resetting the margin to zero we allow the
-   absolute positioning and transform properties below to control the
-   vertical placement.  If you wish to fine‑tune the vertical
-   position, adjust the translateY value on `.hero.active .hero-content`
-   instead of setting a large negative margin here. */
-.hero-content {
-  margin-top: 0;
-}
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-/* Root color variables */
+/* Nafez Landing Styles (clean, conflict-free) */
+
 :root {
-  --primary: #cfe468; /* Soft lime green for highlights */
-  --secondary: #0a1522; /* Dark background to make content pop */
-  --accent: #6ea224; /* Complementary accent color */
-  --text-light: #f5f5f5; /* Light text color */
-  --text-muted: #8fa1b2; /* Muted text for secondary information */
+  --primary: #cfe468;
+  --secondary: #0a1522;
+  --accent: #6ea224;
+  --text-light: #f5f5f5;
+  --text-muted: #8fa1b2;
+  --border: #263244;
 }
 
+* { box-sizing: border-box; }
+html, body { height: 100%; }
 body {
   margin: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--secondary);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell,
+    Noto Sans, "Helvetica Neue", Arial, "Apple Color Emoji", "Segoe UI Emoji";
   color: var(--text-light);
-  line-height: 1.5;
+  background-color: var(--secondary);
+  line-height: 1.45;
 }
 
-/* Top bar presenting SSS and large Nafez logo */
+/* Top bar */
 .top-bar {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 1rem;
+  padding: 16px 20px 8px 20px;
 }
+.presenting { display: flex; align-items: center; gap: 10px; }
+.present-logo { height: 36px; width: auto; opacity: 0.95; }
+.present-text { color: var(--text-muted); text-transform: uppercase; letter-spacing: .08em; font-size: 0.9rem; }
 
-.presenting {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-}
-
-.present-logo {
-  max-width: 80px;
-  height: auto;
-}
-
-.present-text {
-  font-size: 1rem;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
-}
-
-<<<<<<< HEAD
-.nafez-logo-large img {
-  max-width: 350px;
-  height: auto;
-=======
-/* ---------------------------------------------------------------------
-   HERO LOGO AND NAV LOGO
-
-   The design calls for a very large Nafez logo covering much of the
-   viewport when the page loads.  When the user hovers over the hero
-   section, the large logo shrinks and moves upward, revealing the
-   tagline, feature boxes and call‑to‑action.  A small version of the
-   logo appears in the top bar to reinforce the brand.  We use CSS
-   transitions to animate these transformations.  JavaScript toggles
-   the `.active` class on the hero and the `.shrink` class on the
-   header to trigger the transitions.  See script.js for event
-   listeners.
----------------------------------------------------------------------- */
-
-
-/* Hero layout: full viewport height minus a little padding to avoid
-   overlapping with the browser chrome.  Use flexbox to center
-   children.  */
-/*
-   The hero takes up nearly the full viewport height.  We add top
-   padding equal to the height of the top bar to prevent the large
-   logo from being cropped by the navigation.  Flexbox centers the
-   content vertically.  Overflow hidden keeps the shrinking logo
-   contained within the section.
-*/
+/* Hero */
 .hero {
-  /* Reduce the overall height of the hero so that the content appears
-     closer to the top when the logo shrinks.  A smaller min-height
-     also reduces the amount of empty space above the tagline.  Use
-     75vh instead of 80vh. */
-  /* Reduce the overall height of the hero even further so that the
-     content appears very close to the top when the logo shrinks.  A
-     smaller min-height reduces empty space between the logo and
-     tagline. */
-  /* Allow a bit more height so the hero content can sit comfortably
-     within the hero without leaving too much empty space. */
   min-height: 75vh;
-  /* Reduce the top padding to bring the large logo closer to the nav bar
-     while still avoiding overlap.  Less padding also allows the hero
-     content to rise when the logo shrinks. */
-  /* Increase the top padding slightly so the large logo has more
-     breathing room under the top bar.  This helps prevent the
-     top of the logo from being clipped by the navigation. */
-  /* Increase the top padding further to guarantee that the large
-     Nafez logo clears the navigation bar on all viewport sizes. */
-  /* Increase the top padding further to prevent the large logo from ever
-     touching or being clipped by the navigation bar. */
-  /* Increase top padding so the large logo never clips under the nav
-     bar.  This value is tuned to provide enough breathing room
-     while still keeping the hero content high on the page. */
-  /* Increase the top padding slightly so the large logo clears the navigation bar
-     completely.  A larger padding value prevents the logo from ever
-     overlapping the nav bar on hover but still leaves room for the hero
-     content once the logo shrinks. */
-  /* Increase the top padding slightly so the shrunken logo always clears
-     the navigation bar.  This adjustment prevents even a tiny portion of
-     the logo from being clipped by the nav bar once the hero is active. */
-  /* Increase the top padding so the large Nafez logo clears the
-     navigation bar entirely.  A larger padding value prevents any
-     clipping of the logo beneath the nav bar when the page first
-     loads. */
-  padding-top: 8rem;
+  /* Bring the large logo closer to the navbar */
+  padding-top: 5rem;
+  /* Ensure CTA isn't clipped by the next section */
+  padding-bottom: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
   text-align: center;
+  /* Allow CTA to render fully on small screens */
   overflow: hidden;
 }
-
-/* Huge logo at the top of the hero.  It scales responsively with
-   viewport width but remains within the vertical space.  The
-   transform origin is set to top center to make scaling look
-   natural when shrinking upward. */
 .hero-logo img {
   max-width: 90vw;
   width: 100%;
   height: auto;
   transition: transform 0.8s ease;
   transform-origin: top center;
+  will-change: transform;
 }
-
-/* When the hero is active (hovered), shrink the large logo and move
-   it upward.  The translateY value roughly positions it near the
-   header.  Adjust these values to fine tune the final resting
-   position in the nav bar. */
-/* Adjust the upward translation to position the shrunken logo neatly below
-   the top bar.  Negative translateY values move the element up. */
 .hero.active .hero-logo img {
-  /* Scale the logo down to a third and move it up into the nav bar */
-  /* Adjust the translation to position the shrunken logo slightly lower
-     so it does not clip into the nav bar and leaves room for the
-     tagline. */
-  /* Scale down the logo and move it upward.  The translation is
-     tuned to ensure the shrunken logo sits comfortably beneath
-     the top bar without clipping into it.  Reduce the magnitude
-     slightly from the previous value to prevent the top of the
-     logo from disappearing behind the navbar. */
-  /* Move the shrunken logo slightly less upward to ensure it remains
-     fully visible below the top bar. */
-  /* Scale down the logo and move it upward.  Reduce the magnitude
-     of the upward translation slightly to ensure the logo does not
-     clip into the navigation bar. */
-  /* When the hero becomes active (on hover), shrink and lift the logo.  Reduce the
-     upward translation slightly to ensure the logo does not clip into the nav bar. */
-  /* Reduce the upward translation so the shrunken logo sits fully
-     underneath the top bar without clipping.  Scaling remains the same
-     (0.3) but we translate less upward than before. */
-  /* Reduce the upward translation of the shrunken logo so it sits
-     comfortably beneath the top bar without clipping into it.  A
-     smaller negative translateY value moves the logo down a bit. */
-  transform: scale(0.3) translateY(-100px);
+  /* Desktop/tablet default shrink: make a bit larger and higher */
+  transform: scale(0.40) translateY(-150px);
 }
 
-/* Initially hide the hero content until the hero becomes active. */
 .hero-content {
-  /* Position the hero content absolutely within the hero.  When the
-     large logo shrinks, the content will appear roughly where the
-     logo used to be.  The translate offsets keep the content
-     centred on both axes. */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -194,637 +71,133 @@ body {
   transition: opacity 0.6s ease, transform 0.6s ease;
   pointer-events: none;
   display: none;
+  will-change: opacity, transform;
 }
-
-/* Show the hero content when the hero is active. */
 .hero.active .hero-content {
   display: block;
   opacity: 1;
-  /* Lift the hero content higher when active.  A larger negative
-     translateY value moves the content up into the space vacated by
-     the large logo. */
-  /* Lift the hero content even higher when active.  A larger negative
-     translateY value moves the content up into the space vacated by
-     the large logo.  Use -60% for a more dramatic upward shift. */
-  /* Position the hero content higher than its default centre but not so
-     high that it disappears off screen. */
-  /* Position the hero content higher when active.  The second
-     translate parameter moves the content up relative to the hero’s
-     centre.  A negative percentage shifts the content toward the
-     top of the section.  Use a larger magnitude to lift the
-     tagline and feature boxes further into the space formerly
-     occupied by the large logo.  Here we use -20% which places
-     the content roughly one fifth of the hero height above the
-     centre. */
-  /* Lift the hero content higher into the space vacated by the
-     shrinking logo, but leave some breathing room between the
-     content and the top bar.  Moving the content up by 25% of the
-     hero height results in a more balanced composition. */
-  /* Position the hero content closer to the centre when active.  A
-     translateY of -15% places the tagline and feature boxes just below
-     the top bar while leaving space for the small logo. */
-  /* Lift the hero content further into the space vacated by the
-     shrinking logo.  Moving the content up by 25% of the hero
-     height results in a more balanced composition. */
-  /* Lift the hero content into the space previously occupied by the large logo.
-     A translateY of -20% positions the tagline and feature cards high on the
-     page without colliding with the nav bar. */
-  /* Lift the hero content further into the space vacated by the large
-     logo.  A translateY of -25% positions the tagline and feature
-     buttons higher on the page so they appear closer to where the
-     large logo originally sat. */
-  /* Position the tagline and feature boxes higher on the page when
-     the hero is active.  A translateY of -22% lifts the content
-     into the space vacated by the shrinking logo without pushing
-     it too close to the navigation. */
   transform: translate(-50%, -22%);
   pointer-events: auto;
 }
 
-/* The tagline, features, subtagline and CTA maintain the same
-   typography as before.  They are nested inside .hero-content. */
-
-/* ------------------------------------------------------------------ */
-/* Modal styles                                                       */
-/*
-   The following rules style the overlay and modal windows that
-   appear when a user clicks on one of the Back/Fund/Grow feature
-   cards.  The overlay covers the viewport with a semi‑transparent
-   backdrop and centres the modal.  Each modal can contain its own
-   heading, text and lists.  The `.active` class on the overlay
-   controls its visibility; individual modals also use `.active` to
-   become visible.  Animations are handled via anime.js in the
-   script file, but these base styles ensure a graceful fallback.
-*/
-.modal-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem;
-}
-
-/* Show the overlay when it has the .active class */
-.modal-overlay.active {
-  display: flex;
-}
-
-/* Base modal container */
-.modal {
-  display: none;
-  background-color: rgba(10, 21, 34, 0.95);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 2rem;
-  max-width: 600px;
-  width: 100%;
-  color: var(--text-light);
-  overflow-y: auto;
-  max-height: 80vh;
-}
-
-/* Display a modal when it has the .active class */
-.modal.active {
-  display: block;
-}
-
-.modal h3 {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  color: var(--primary);
-  font-size: 2rem;
-}
-
-.modal p {
-  margin-bottom: 1rem;
-  line-height: 1.5;
-  font-size: 1rem;
-}
-
-.modal ul {
-  margin: 0 0 1rem 1.5rem;
-  padding: 0;
-  list-style-type: disc;
-}
-.modal ul li {
-  margin-bottom: 0.5rem;
-}
-.close-modal {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  background-color: var(--primary);
-  color: var(--secondary);
-  border: none;
-  border-radius: 8px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-.close-modal:hover {
-  background-color: var(--accent);
-}
-
-
-/* Styles for rotating audience words in the tagline.  The element
-   with id="audienceWord" will toggle between fade-out and fade-in
-   states to animate the word change. */
-#audienceWord {
-  display: inline-block;
-  transition: opacity 0.2s ease, transform 0.2s ease;
-}
-
-#audienceWord.fade-out {
-  opacity: 0;
-  transform: translateY(10px);
-}
-
-#audienceWord.fade-in {
-  opacity: 1;
-  transform: translateY(0);
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: calc(100vh - 200px);
-  padding: 0 2rem 2rem;
-  text-align: center;
-  width: 100%;
-}
-
-
-/* Hero section */
-<<<<<<< HEAD
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  gap: 1.5rem;
-}
-
 .tagline {
-  font-size: 2rem;
-  margin: 0;
-  color: var(--primary);
-  max-width: 800px;
+  margin: 0 0 14px 0;
+  font-size: clamp(26px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: 0.2px;
 }
+.subtagline { margin: 6px auto 22px auto; max-width: 720px; color: var(--text-muted); font-size: clamp(16px, 2.6vw, 22px); }
 
-.features {
-  display: flex;
-  gap: 1.5rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
-
-=======
-/* The default hero rule is replaced by custom styles above. */
-
-/* Larger tagline for greater impact */
-.tagline {
-  /* Increase the tagline size for greater impact and remove any
-     excessive margin. */
-  font-size: 3rem;
-  margin: 0;
-  color: var(--primary);
-  max-width: 900px;
-}
-
-/* Feature container spacing */
-.features {
-  display: flex;
-  gap: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
-  /* Center the feature boxes horizontally */
-  justify-content: center;
-}
-
-/* Feature boxes are larger to accommodate custom icons.  The
-   dimensions are square and leave room for an image or a larger
-   emoji. */
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+.features { display: flex; justify-content: center; gap: 22px; margin: 16px 0 10px 0; flex-wrap: wrap; }
 .feature {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--primary);
-<<<<<<< HEAD
-  border-radius: 8px;
-  padding: 1rem;
-  width: 80px;
-  height: 80px;
-=======
+  display: grid; grid-template-rows: auto auto; gap: 10px; align-items: center; justify-items: center;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
   border-radius: 12px;
-  padding: 1.5rem;
-  /* Make the feature cards larger and rectangular to accommodate
-     descriptive text or custom icons.  Increase the width and
-     reduce the border radius for a more modern appearance. */
-  /* Expand the feature boxes to be more rectangular and to better
-     accommodate custom PNG icons and descriptive text. */
-  /* Increase the overall footprint of the feature cards.  A wider and taller
-     card provides more room for descriptive text or larger icons. */
-  /* Widen and enlarge the feature cards so they are more prominent.
-     The increased width accommodates larger icons and longer labels. */
-  /* Expand the feature cards so they are more prominent on the
-     landing page.  A wider and taller card provides ample space
-     for descriptive icons and bigger text. */
-  width: 300px;
-  height: 180px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-/* Slight scale and color inversion on hover for interactivity */
-.feature:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  transform: translateY(-4px);
+  padding: clamp(18px, 2.5vw, 28px) clamp(22px, 3vw, 32px);
+  min-width: clamp(160px, 24vw, 240px);
+  min-height: clamp(120px, 18vw, 160px);
+  transition: transform .2s ease, background-color .2s ease, box-shadow .2s ease;
   cursor: pointer;
 }
-.feature:hover .icon,
-.feature:hover .feature-label {
-  color: var(--secondary);
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-}
-
-/* Interactive hover state for feature boxes */
+.feature:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
 .feature:hover {
-  background-color: var(--primary);
-  border-color: var(--primary);
-  cursor: pointer;
-}
-.feature:hover .icon,
-.feature:hover .feature-label {
-  color: var(--secondary);
-}
-
-<<<<<<< HEAD
-.icon {
-  font-size: 1.5rem;
-  margin-bottom: 0.25rem;
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: none;
+  background: rgba(207, 228, 104, 0.10); /* very dim green highlight */
+  border-color: #9fb63c;
   color: var(--primary);
 }
+.feature .icon { display: flex; align-items: center; justify-content: center; height: clamp(48px, 6vw, 64px); }
+.feature .icon svg { width: clamp(36px, 4vw, 48px); height: clamp(36px, 4vw, 48px); }
+.feature-label { font-size: clamp(16px, 2.2vw, 20px); color: var(--text-muted); font-weight: 600; letter-spacing: .2px; }
 
-.feature-label {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
+/* Rotating word transitions */
+#audienceWord { display: inline-block; transition: opacity .2s ease, transform .2s ease; }
+#audienceWord.fade-out { opacity: 0; transform: translateY(-4px); }
+#audienceWord.fade-in { opacity: 1; transform: translateY(0); }
 
-.subtagline {
-  font-size: 1.1rem;
-  color: var(--text-muted);
-=======
-/* Icon styling.  If a PNG is used instead of an emoji, set
-   background-size to contain.  The default font-based icons are
-   enlarged. */
-.icon {
-  font-size: 2.2rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* Placeholder for PNG icons: if a feature contains an <img>, ensure
-   the image fills the icon container.  You can replace the emoji in
-   the HTML with <img src="./images/back-icon.png" class="icon-img" /> */
-.icon img {
-  /* Increase the size of icon images to better fill the larger
-     feature boxes. */
-  width: 64px;
-  height: 64px;
-}
-
-/* Larger label text */
-/* Larger label text */
-.feature-label {
-  /* Increase the feature label size for improved legibility on the
-     expanded cards. */
-  font-size: 1.3rem;
-  color: var(--text-light);
-}
-
-/* Increase subtagline size and spacing */
-.subtagline {
-  /* Increase the subtagline size slightly for better readability and
-     adjust margins to position it closer to the tagline. */
-  font-size: 1.6rem;
-  color: var(--text-muted);
-  margin-top: 1rem;
-  margin-bottom: 2rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-}
-
+/* CTA */
 .cta-button {
-  display: inline-block;
-<<<<<<< HEAD
-  padding: 0.75rem 2rem;
-=======
-  /* Larger button dimensions */
-  padding: 1.25rem 3rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-  border-radius: 999px;
-  background-color: var(--primary);
-  color: var(--secondary);
-  font-weight: bold;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
-<<<<<<< HEAD
-=======
-  font-size: 1.2rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
+  display: inline-block; margin-top: 18px; background: var(--primary); color: #09121d; font-weight: 700;
+  padding: 12px 18px; border-radius: 999px; text-decoration: none; border: 1px solid #9fb63c;
 }
+.cta-button:hover { background: #b8d641; }
+.cta-button:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
+.cta-button:active { transform: translateY(1px); box-shadow: inset 0 2px 6px rgba(0,0,0,0.15); }
 
-.cta-button:hover {
-  background-color: var(--accent);
+/* Signup */
+.signup { margin: 56px auto 10px auto; padding: 18px 20px 8px 20px; max-width: 680px; background: rgba(255,255,255,0.04); border: 1px solid var(--border); border-radius: 14px; text-align: center; }
+.signup h3 { margin: 0 0 12px 0; font-size: 20px; }
+#subscribe-form { display: grid; grid-template-columns: 1fr; gap: 10px; }
+#subscribe-form input[type="text"],
+#subscribe-form input[type="email"] {
+  width: 100%; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: #0d1a2c; color: var(--text-light);
 }
+.terms { display: flex; align-items: center; justify-content: center; gap: 8px; color: var(--text-muted); font-size: 13px; }
+.terms a { color: var(--primary); text-decoration: underline; }
+.signup-button { justify-self: center; background: var(--primary); color: #09121d; font-weight: 700; padding: 10px 16px; border-radius: 10px; border: 1px solid #9fb63c; cursor: pointer; }
+.signup-button:hover { background: #b8d641; }
+.message { min-height: 22px; color: var(--primary); font-size: 14px; text-align: center; }
 
-/* Sign-up form styles */
-#signup-section {
-  width: 100%;
-  max-width: 600px;
-<<<<<<< HEAD
-  margin-top: 2rem;
-=======
-  /* Reduce the margin above the sign‑up section so it appears
-     closer to the tagline. */
-  /* Bring the sign‑up section closer to the tagline. */
-  /* Pull the sign‑up section a bit closer to the hero content to
-     reduce excessive vertical space after the tagline and feature
-     boxes.  A smaller margin creates a tighter grouping of the
-     landing page elements. */
-  /* Leave more space between the call‑to‑action button and the
-     sign‑up form so they don’t overlap and to improve the visual
-     hierarchy. */
-  margin-top: 1.5rem;
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-  padding: 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
-  background-color: rgba(10, 21, 34, 0.6);
-}
-
-#signup-section h3 {
-  margin-bottom: 1rem;
-  color: var(--primary);
-}
-
-#signup-section form {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-input[type='email'],
-input[type='text'] {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--primary);
-  border-radius: 4px;
-  background-color: transparent;
-  color: var(--text-light);
-  font-size: 1rem;
-}
-
-input[type='email']::placeholder,
-input[type='text']::placeholder {
-  color: var(--text-muted);
-}
-
-.terms {
-  display: flex;
-  align-items: center;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  gap: 0.5rem;
-  text-align: left;
-  width: 100%;
-}
-
-.terms input {
-  margin: 0;
-}
-
-.signup-button {
-  padding: 0.75rem 2rem;
-  background-color: var(--primary);
-  color: var(--secondary);
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
-}
-
-.signup-button:hover {
-  background-color: var(--accent);
-}
-
-<<<<<<< HEAD
-=======
-/* -------------------------------------------------------------------
-   MODAL OVERLAY AND CONTENT
-
-   The feature boxes (Back, Fund, Grow) open small pop‑up panels that
-   provide more information about each concept.  These modals are
-   hidden by default and animated into view using anime.js.  The
-   overlay darkens the background, and the modal content panel
-   appears centred on the screen.  Clicking the overlay or the close
-   icon hides the modal. */
-
-/* The overlay covers the entire viewport.  Hidden by default. */
+/* Modals */
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-  opacity: 0;
+  position: fixed; inset: 0; display: none; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.5); z-index: 1000; padding: 20px;
 }
-
-/* Each modal panel.  Hidden by default; animations handle the
-   transition to visible states. */
+.modal-overlay.active { display: flex; }
 .modal {
-  background-color: var(--secondary);
-  border: 2px solid var(--primary);
-  border-radius: 12px;
-  max-width: 500px;
-  width: 90%;
-  padding: 2rem;
-  position: relative;
-  color: var(--text-light);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  opacity: 0;
-  transform: scale(0.8);
+  background: #0f1e31; border: 1px solid var(--border); color: var(--text-light);
+  border-radius: 12px; padding: 20px; max-width: 520px; width: 100%; display: none; opacity: 0;
 }
+.modal.active { display: block; opacity: 1; }
+.modal h3 { margin-top: 0; color: var(--primary); }
+.modal p { color: var(--text-light); }
+.modal ul { padding-left: 1.2rem; }
+.close-modal { margin-top: 10px; background: var(--primary); color: #09121d; font-weight: 700; padding: 8px 14px; border-radius: 8px; border: 1px solid #9fb63c; cursor: pointer; }
+.close-modal:hover { background: #b8d641; }
+.close-modal:focus { outline: 2px solid var(--primary); outline-offset: 2px; }
 
-/* Modal heading and body text */
-.modal h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-  font-size: 1.8rem;
+/* Footer */
+footer { margin-top: 40px; border-top: 1px solid var(--border); }
+.footer-links { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 20px; }
+.footer-links h4 { margin: 0 0 8px 0; font-size: 14px; color: var(--text-light); }
+.footer-links ul { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin: 6px 0; }
+.footer-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.footer-links a:hover { color: var(--text-light); }
+.bottom-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 20px 22px 20px; border-top: 1px solid var(--border); }
+.bottom-left { display: flex; align-items: center; gap: 10px; }
+.bottom-logo { height: 22px; width: auto; }
+.bottom-middle { display: flex; gap: 12px; }
+.bottom-middle a { color: var(--text-muted); text-decoration: none; font-size: 14px; }
+.bottom-middle a:hover { color: var(--text-light); }
+.bottom-right { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
+.sss-footer-logo { height: 18px; width: auto; opacity: .9; }
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .hero { padding-top: 4rem; overflow: visible; }
+  /* Nudge shrunken logo higher on phones and make slightly larger */
+  .hero.active .hero-logo img { transform: scale(0.75) translateY(-140px); }
+  .top-bar { padding: 10px 16px 6px 16px; }
 }
-
-.modal p {
-  margin-top: 0.5rem;
-  margin-bottom: 1.5rem;
-  font-size: 1.1rem;
-  line-height: 1.4;
+@media (max-width: 720px) {
+  .hero { padding-bottom: 7rem; }
+  .features { gap: 12px; }
+  .feature { padding: 10px 12px; min-width: 90px; }
+  .footer-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .signup { margin-top: 72px; }
 }
-
-/* Close button in the modal.  Positioned in the top-right corner. */
-.close-modal {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  color: var(--primary);
-  cursor: pointer;
-  user-select: none;
+@media (max-width: 420px) {
+  .hero { padding-bottom: 8rem; }
+  .cta-button { margin-bottom: 0.75rem; }
+  /* Slightly higher and larger on the narrowest devices */
+  .hero.active .hero-logo img { transform: scale(0.82) translateY(-150px); }
 }
-
->>>>>>> c1089d0 (chore: last working landing build ready to push)
-.message {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: var(--accent);
-}
-
-footer {
-  width: 100%;
-  margin-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-  padding-top: 2rem;
-  background-color: var(--secondary);
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2rem;
-  padding-bottom: 1.5rem;
-}
-
-.footer-links .column {
-  min-width: 140px;
-}
-
-.footer-links h4 {
-  margin-bottom: 0.5rem;
-  color: var(--primary);
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-links ul li {
-  margin-bottom: 0.25rem;
-}
-
-.footer-links ul li a {
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 0.85rem;
-}
-
-.footer-links ul li a:hover {
-  color: var(--primary);
-  text-decoration: underline;
-}
-
-.bottom-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem 0;
-  background-color: var(--primary);
-  color: var(--secondary);
-}
-
-.bottom-bar a {
-  color: var(--secondary);
-  margin: 0 0.5rem;
-  text-decoration: none;
-  font-size: 0.8rem;
-}
-
-.bottom-bar a:hover {
-  text-decoration: underline;
-}
-
-.bottom-bar .bottom-left, .bottom-bar .bottom-middle, .bottom-bar .bottom-right {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.bottom-bar .bottom-left img.bottom-logo {
-  max-width: 60px;
-  height: auto;
-}
-
-.bottom-bar .sss-footer-logo {
-  max-width: 80px;
-  height: auto;
-  margin-left: 0.25rem;
-}
-
-@media screen and (min-width: 768px) {
-  .tagline {
-    font-size: 2.5rem;
-  }
-  .features {
-    gap: 2rem;
-  }
-  .feature {
-    width: 100px;
-    height: 100px;
-  }
-  .feature-label {
-    font-size: 1rem;
-  }
-  #signup-section {
-    max-width: 500px;
-  }
-  .footer-links {
-    justify-content: space-between;
-  }
-  .bottom-bar {
-    flex-direction: row;
-    justify-content: space-between;
-    padding: 1rem 2rem;
-  }
-  .bottom-bar .bottom-left, .bottom-bar .bottom-middle, .bottom-bar .bottom-right {
-    flex-direction: row;
-  }
+@media (max-width: 420px) {
+  .present-text { display: none; }
+  .footer-links { grid-template-columns: 1fr; }
+  .bottom-middle { width: 100%; justify-content: center; }
+  .cta-button { padding: 14px 22px; font-size: 1rem; }
 }

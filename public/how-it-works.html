@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,20 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nafez – How It Works</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/info.css" />
     <link rel="icon" type="image/png" href="./images/nafez-logo.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-9V8SX1f2iZb0vC2mM8Vt1zGmB3gI8a0N8lCq5Cwz9vQO4f2C9kqkltqkNY3iia0Qz3wM8Qm62pQ/6X2c6C2R7A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   </head>
   <body>
-    <header class="top-bar">
-      <div class="presenting">
-        <img src="./images/sss-logo.png" alt="Sam Software Solutions logo" class="present-logo" />
-        <span class="present-text">Presents</span>
-      </div>
+    <header class="info-header">
+      <a href="/" class="home-link">
+        <img src="./images/nafez-logo.png" alt="Nafez logo" class="info-logo" />
+      </a>
+      <nav class="info-nav">
+        <a href="/" class="info-nav-link">Home</a>
+        <a href="/how-it-works.html" class="info-nav-link active">How It Works</a>
+      </nav>
     </header>
-    <main style="min-height:60vh; display:flex; flex-direction:column; align-items:center; justify-content:center; padding-top:2rem; text-align:center;">
-      <h2>How It Works</h2>
-      <p>Discover how seekers and backers come together on Nafez to turn ideas into reality. This page will outline the journey from application through funding and fulfilment.  Content coming soon!</p>
-    </main>
+        <main class="info-main">
+      <section class="intro-section">
+        <h1>The Journey on Nafez</h1>
+        <p class="intro-tagline">From idea to funding to fulfilment — how Seekers and Backers work together.</p>
+      </section>
+
+      <section class="seekers-backers-section">
+        <div class="explain-card">
+          <h2 class="card-title">For Seekers</h2>
+          <p class="card-desc">Set a clear goal, tell your story, and rally support. Deliver with transparency.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"/><line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"/><line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"/><circle cx=\"4\" cy=\"6\" r=\"1\"/><circle cx=\"4\" cy=\"12\" r=\"1\"/><circle cx=\"4\" cy=\"18\" r=\"1\"/></svg>
+              </span>
+              <span class="feature-text">Apply & get verified</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><polyline points=\"23 7 16 14 10 8 1 17\"/><polyline points=\"17 7 23 7 23 13\"/></svg>
+              </span>
+              <span class="feature-text">Launch your campaign</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"8\" width=\"18\" height=\"12\" rx=\"2\" ry=\"2\" /><line x1=\"3\" y1=\"12\" x2=\"21\" y2=\"12\" /></svg>
+              </span>
+              <span class="feature-text">Collect pledges securely</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>
+              </span>
+              <span class="feature-text">Deliver & update backers</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="explain-card">
+          <h2 class="card-title">For Backers</h2>
+          <p class="card-desc">Discover ideas you love, pledge with confidence, and follow progress to delivery.</p>
+          <div class="features-grid">
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z\"/></svg>
+              </span>
+              <span class="feature-text">Explore & follow</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"3\" y=\"8\" width=\"18\" height=\"12\" rx=\"2\" ry=\"2\" /><line x1=\"3\" y1=\"12\" x2=\"21\" y2=\"12\" /></svg>
+              </span>
+              <span class="feature-text">Choose a reward & pledge</span>
+            </div>
+            <div class="feature-card">
+              <span class="feature-icon" aria-hidden="true">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"8 12 11 15 16 10\"/></svg>
+              </span>
+              <span class="feature-text">Get refunded if goal not met (fixed)</span>
+            </div>
+          </div>
+        </div>
+      </section>
     <section id="signup-section" class="signup">
       <h3>Sign up for early access!</h3>
       <form id="subscribe-form" action="#" method="post">
