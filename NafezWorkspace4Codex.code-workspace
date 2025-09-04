@@ -2,6 +2,12 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "../nafez-alpha"
+		},
+		{
+			"path": "../nafez-alpha/nafez_deliverables_v0.2"
 		}
 	],
 	"settings": {}

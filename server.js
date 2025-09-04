@@ -14,10 +14,64 @@ const fs = require('fs');
 const path = require('path');
 const url = require('url');
 
+// Minimal .env loader (no external deps). Loads only if file exists and
+// does not override variables that are already set in the environment.
+try {
+  const envPath = path.join(__dirname, '.env');
+  if (fs.existsSync(envPath)) {
+    const lines = fs.readFileSync(envPath, 'utf-8').split(/\r?\n/);
+    for (const line of lines) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+      const eq = trimmed.indexOf('=');
+      if (eq === -1) continue;
+      const key = trimmed.slice(0, eq).trim();
+      let val = trimmed.slice(eq + 1).trim();
+      if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+        val = val.slice(1, -1);
+      }
+      if (!(key in process.env)) process.env[key] = val;
+    }
+  }
+} catch (_) {
+  // ignore .env parsing errors in production
+}
+
 // Server configuration
 const PORT = process.env.PORT || 3000;
 const staticDir = path.join(__dirname, 'public');
 const dataDir = path.join(__dirname, 'data');
+// Resolve and sanitize alpha origin (scheme + host[:port]). Falls back to localhost:4000
+const alphaOrigin = (() => {
+  const fallback = 'http://localhost:4000';
+  let raw = (process.env.ALPHA_ORIGIN || '').trim();
+  if (!raw) return fallback;
+  // Prepend https:// if scheme missing
+  if (!/^[a-zA-Z][a-zA-Z0-9+.-]*:\/\//.test(raw)) {
+    raw = 'https://' + raw;
+  }
+  try {
+    const u = new url.URL(raw);
+    return u.origin; // ensure we keep only the origin without any path
+  } catch (e) {
+    console.error('Invalid ALPHA_ORIGIN, using default:', raw, e.message);
+    return fallback;
+  }
+})();
+
+// Base path where the alpha app is mounted on the alpha origin.
+// Example values:
+//  - '/alpha' (default; matches local alpha server)
+//  - '/' or '' (production alpha mounted at root)
+const alphaBasePath = (() => {
+  let raw = (process.env.ALPHA_BASE_PATH || '/alpha').trim();
+  if (!raw) return '';
+  // Normalize: ensure leading slash; remove trailing slashes
+  if (!raw.startsWith('/')) raw = '/' + raw;
+  raw = raw.replace(/\/+$/, '');
+  if (raw === '/') return '';
+  return raw;
+})();
 const subscribersFile = path.join(dataDir, 'subscribers.json');
 
 // Ensure the data directory exists
@@ -54,6 +108,14 @@ function getContentType(ext) {
       return 'image/gif';
     case '.svg':
       return 'image/svg+xml';
+    case '.woff2':
+      return 'font/woff2';
+    case '.woff':
+      return 'font/woff';
+    case '.ttf':
+      return 'font/ttf';
+    case '.otf':
+      return 'font/otf';
     default:
       return 'application/octet-stream';
   }
@@ -165,15 +227,37 @@ const server = http.createServer((req, res) => {
     handleSubscribe(req, res);
     return;
   }
+  // Redirect any /alpha/* request to the real alpha server
+  if ((req.method === 'GET' || req.method === 'HEAD') &&
+      (parsedUrl.pathname === '/alpha' || parsedUrl.pathname.startsWith('/alpha/'))) {
+    // Compute remainder after '/alpha'
+    let remainder = parsedUrl.pathname === '/alpha' ? '/' : parsedUrl.pathname.slice('/alpha'.length);
+    if (!remainder.startsWith('/')) remainder = '/' + remainder;
+    // If user requested just /alpha or /alpha/, send them to the alpha login page
+    const normalizedRemainder = (remainder === '/' ? '/login' : remainder);
+    const targetPath = `${alphaBasePath}${normalizedRemainder}`;
+    const target = `${alphaOrigin}${targetPath}${parsedUrl.search || ''}`;
+    res.writeHead(302, { Location: target });
+    res.end();
+    return;
+  }
   // Normalize path and avoid directory traversal
   let pathname = decodeURIComponent(parsedUrl.pathname);
   if (pathname === '/') pathname = '/index.html';
-  const filePath = path.join(staticDir, pathname);
+  let filePath = path.join(staticDir, pathname);
   // Prevent access outside of staticDir
   if (!filePath.startsWith(staticDir)) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     res.end('403 Forbidden');
     return;
+  }
+  try {
+    const stat = fs.existsSync(filePath) ? fs.statSync(filePath) : null;
+    if (stat && stat.isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
+  } catch (_) {
+    // Fall through; serveStatic will handle missing paths
   }
   serveStatic(filePath, res);
 });
